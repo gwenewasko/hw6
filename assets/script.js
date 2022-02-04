@@ -1,5 +1,7 @@
 // variables
 const searchCities = [];
+const searchedCities = JSON.parse(localStorage.getItem("cityHistory")) || [];
+
 // functions
 function handleCoords(searchCity) {
   const fetchUrl = `http://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=4b9f7dc3f8536150bc0eb915e8e4a81b`;
@@ -39,7 +41,7 @@ function displayCurrentWeather(currentCityData, cityName) {
     "#currentWeather"
   ).innerHTML = `<h2>${cityName} ${moment
     .unix(currentCityData.dt)
-    .format("L")} <img src="${weatherIcon}"></h2> <div>Temp: ${
+    .format("MMM Do YY")} <img src="${weatherIcon}"></h2> <div>Temp: ${
     currentCityData.temp
   } \xB0F</div> <div>Wind: ${
     currentCityData.wind_gust
@@ -69,9 +71,11 @@ function displayFiveDayWeather(fiveDayCityData) {
     // todo: temp, wind, humidity DONT FORGET UNITS ()
     document.querySelector(
       "#fiveDayWeather"
-    ).innerHTML += `<div class="card col-sm m-2"> <div><img src="${weatherIcon}"></div> <div>${moment
+    ).innerHTML += `<div class="card col-sm m-2"> <div class="pt-3"><img src="${weatherIcon}"></div> <div class="mb-3">${moment
       .unix(day.dt)
-      .format("MMM Do YY")}</div></div>`;
+      .format("dddd")}</div><div>Temp: ${day.temp.day}\xB0</div><div>Wind: ${
+      day.wind_gust
+    } MPH</div><div class="pb-3">Humidity: ${day.humidity}%</div></div>`;
   });
 }
 
@@ -83,6 +87,7 @@ function handleFormSubmit(event) {
   const filteredCities = searchCities.filter((city, index) => {
     return searchCities.indexOf(city) === index;
   });
+  localStorage.setItem("cityHistory", JSON.stringify(filteredCities));
   filteredCities.forEach((city) => {
     document.querySelector(
       "#searchHistory"
