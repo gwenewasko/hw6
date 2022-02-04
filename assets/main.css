@@ -1,0 +1,26 @@
+.uv-safe {
+  background-color: #33b93e;
+  color: white;
+}
+
+.uv-danger {
+  background-color: #e4362c;
+  color: white;
+  padding: 0.5rem;
+}
+
+.tt-c {
+  text-transform: capitalize;
+}
+
+.bgc-red {
+  background-color: red;
+}
+
+.bgc-green {
+  background-color: green;
+}
+
+.bgc-yellow {
+  background-color: yellow;
+}
