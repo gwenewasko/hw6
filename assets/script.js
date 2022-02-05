@@ -1,10 +1,9 @@
 // variables
-const searchCities = [];
-const searchedCities = JSON.parse(localStorage.getItem("cityHistory")) || [];
+const searchCities = JSON.parse(localStorage.getItem("cityHistory")) || [];
 
 // functions
 function handleCoords(searchCity) {
-  const fetchUrl = `http://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=4b9f7dc3f8536150bc0eb915e8e4a81b`;
+  const fetchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=4b9f7dc3f8536150bc0eb915e8e4a81b`;
 
   fetch(fetchUrl)
     .then(function (response) {
@@ -33,7 +32,7 @@ function handleCurrentWeather(coordinates, city) {
 }
 
 function displayCurrentWeather(currentCityData, cityName) {
-  let weatherIcon = `http://openweathermap.org/img/wn/${currentCityData.weather[0].icon}.png`;
+  let weatherIcon = `https://openweathermap.org/img/wn/${currentCityData.weather[0].icon}.png`;
   let uvColor = uvColorChange(currentCityData.uvi);
   // todo: add Wind, humidity, UV index DONT FORGET UNITS
   // create dynamic bg for uv index by adding class based on value of uv
@@ -67,7 +66,7 @@ function displayFiveDayWeather(fiveDayCityData) {
   document.querySelector("#fiveDayWeather").innerHTML = "";
 
   cityData.forEach((day) => {
-    let weatherIcon = `http://openweathermap.org/img/wn/${day.weather[0].icon}.png`;
+    let weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`;
     // todo: temp, wind, humidity DONT FORGET UNITS ()
     document.querySelector(
       "#fiveDayWeather"
@@ -88,12 +87,16 @@ function handleFormSubmit(event) {
     return searchCities.indexOf(city) === index;
   });
   localStorage.setItem("cityHistory", JSON.stringify(filteredCities));
-  filteredCities.forEach((city) => {
+  showSearchButtons(filteredCities);
+  handleCoords(city);
+}
+
+function showSearchButtons(cities) {
+  cities.forEach((city) => {
     document.querySelector(
       "#searchHistory"
     ).innerHTML += `<button class="tt-c mt-2 w-100" data-city="${city}">${city}</button>`;
   });
-  handleCoords(city);
 }
 
 function handleHistory(event) {
@@ -102,6 +105,7 @@ function handleHistory(event) {
 }
 
 // listeners
+showSearchButtons(searchCities);
 // on page load, show any past cities searched
 // search for city
 // click on city to show weather
