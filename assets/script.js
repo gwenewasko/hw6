@@ -38,15 +38,17 @@ function displayCurrentWeather(currentCityData, cityName) {
   // create dynamic bg for uv index by adding class based on value of uv
   document.querySelector(
     "#currentWeather"
-  ).innerHTML = `<h2>${cityName} ${moment
+  ).innerHTML = `<h2 class="f-400">${cityName} ${moment
     .unix(currentCityData.dt)
-    .format("MMM Do YY")} <img src="${weatherIcon}"></h2> <div>Temp: ${
+    .format(
+      "MMM Do, YYYY"
+    )} <img src="${weatherIcon}"></h2> <div class="f-sm f-bold">Temp: ${
     currentCityData.temp
-  } \xB0F</div> <div>Wind: ${
+  } \xB0F</div> <div class="f-sm f-bold">Wind: ${
     currentCityData.wind_gust
-  } MPH</div> <div>Humidity: ${
+  } MPH</div> <div class="f-sm f-bold">Humidity: ${
     currentCityData.humidity
-  } %</div> <div class="mb-5">UV Index: <span class="rounded p-1 ${uvColor}"> ${
+  } %</div> <div class="f-sm f-bold mb-5">UV Index: <span class="rounded p-1 ${uvColor}"> ${
     currentCityData.uvi
   } </span> </div>`;
 }
@@ -70,11 +72,15 @@ function displayFiveDayWeather(fiveDayCityData) {
     // todo: temp, wind, humidity DONT FORGET UNITS ()
     document.querySelector(
       "#fiveDayWeather"
-    ).innerHTML += `<div class="card col-sm m-2"> <div class="pt-3"><img src="${weatherIcon}"></div> <div class="mb-3">${moment
+    ).innerHTML += `<div class="card col-sm m-2"> <div class="pt-3"><img src="${weatherIcon}"></div> <div class="f-bold mb-3">${moment
       .unix(day.dt)
-      .format("dddd")}</div><div>Temp: ${day.temp.day}\xB0</div><div>Wind: ${
+      .format("dddd")}</div><div><span class="f-italic">Temp:</span> ${
+      day.temp.day
+    }\xB0</div><div><span class="f-italic">Wind:</span> ${
       day.wind_gust
-    } MPH</div><div class="pb-3">Humidity: ${day.humidity}%</div></div>`;
+    } MPH</div><div class="pb-3"><span class="f-italic">Humidity:</span> ${
+      day.humidity
+    }%</div></div>`;
   });
 }
 
@@ -95,7 +101,7 @@ function showSearchButtons(cities) {
   cities.forEach((city) => {
     document.querySelector(
       "#searchHistory"
-    ).innerHTML += `<button class="tt-c mt-2 w-100" data-city="${city}">${city}</button>`;
+    ).innerHTML += `<button class="btn btn-outline-secondary f-400 tt-c mt-2 w-100" data-city="${city}">${city}</button>`;
   });
 }
 
