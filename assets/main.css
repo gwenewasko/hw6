@@ -1,3 +1,13 @@
+.b {
+  border: 0.5px;
+  border-style: solid;
+  border-color: rgb(187, 187, 187);
+}
+
+.bgc-blue {
+  background-color: rgb(210, 242, 255);
+}
+
 .bgc-red {
   border-color: rgb(218, 65, 18);
   border-style: solid;
@@ -19,13 +29,17 @@
   color: rgb(255, 184, 52);
 }
 
-.f-w-w {
-  flex-wrap: wrap;
+.c-blue {
+  background-color: rgb(22, 113, 141) !important;
 }
 
-.f-l-300 {
+.c-white {
+  color: white !important;
+}
+
+.f-bold {
   font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .f-italic {
@@ -34,22 +48,50 @@
   font-style: italic;
 }
 
+.f-l-300 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
 .f-400 {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
-.f-bold {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+.f-e-sm {
+  font-size: 10pt !important;
+}
+
+.f-sm {
+  font-size: 1rem !important;
+}
+
+.f-lg {
+  font-size: 7vh !important;
 }
 
 .f-upper {
   text-transform: uppercase;
 }
 
-.f-sm {
-  font-size: 1rem !important;
+.f-w-w {
+  flex-wrap: wrap;
+}
+
+.l-space {
+  letter-spacing: 4px;
+}
+
+.n-border {
+  border: none !important;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.t-c-blue {
+  color: rgb(22, 113, 141) !important;
 }
 
 .tt-c {

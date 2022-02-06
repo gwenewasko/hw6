@@ -38,11 +38,11 @@ function displayCurrentWeather(currentCityData, cityName) {
   // create dynamic bg for uv index by adding class based on value of uv
   document.querySelector(
     "#currentWeather"
-  ).innerHTML = `<h2 class="f-400">${cityName} ${moment
+  ).innerHTML = `<h2 class="f-400"><span class="f-bold">${cityName}</span> ${moment
     .unix(currentCityData.dt)
     .format(
       "MMM Do, YYYY"
-    )} <img src="${weatherIcon}"></h2> <div class="f-sm f-bold">Temp: ${
+    )} <img src="${weatherIcon}"><div class="b"></h2> <div class="f-sm f-bold">Temp: ${
     currentCityData.temp
   } \xB0F</div> <div class="f-sm f-bold">Wind: ${
     currentCityData.wind_gust
@@ -50,7 +50,7 @@ function displayCurrentWeather(currentCityData, cityName) {
     currentCityData.humidity
   } %</div> <div class="f-sm f-bold mb-5">UV Index: <span class="rounded p-1 ${uvColor}"> ${
     currentCityData.uvi
-  } </span> </div>`;
+  } </span> </div></div>`;
 }
 
 function uvColorChange(uvIndex) {
@@ -72,13 +72,15 @@ function displayFiveDayWeather(fiveDayCityData) {
     // todo: temp, wind, humidity DONT FORGET UNITS ()
     document.querySelector(
       "#fiveDayWeather"
-    ).innerHTML += `<div class="card col-sm m-2"> <div class="pt-3"><img src="${weatherIcon}"></div> <div class="f-bold mb-3">${moment
+    ).innerHTML += `<div class="card bgc-blue col-sm m-2"> <div class="pt-3"><img src="${weatherIcon}"></div> <div class="t-c-blue f-bold mb-3">${moment
       .unix(day.dt)
-      .format("dddd")}</div><div><span class="f-italic">Temp:</span> ${
+      .format(
+        "dddd"
+      )}</div><div class="t-c-blue"><span class="f-italic">Temp:</span> ${
       day.temp.day
-    }\xB0</div><div><span class="f-italic">Wind:</span> ${
+    }\xB0</div><div class="t-c-blue"><span class="f-italic">Wind:</span> ${
       day.wind_gust
-    } MPH</div><div class="pb-3"><span class="f-italic">Humidity:</span> ${
+    } MPH</div><div class="t-c-blue pb-3"><span class="f-italic">Humidity:</span> ${
       day.humidity
     }%</div></div>`;
   });
