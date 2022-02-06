@@ -19,25 +19,24 @@
 <body>
     <main class="container-fluid">
         <div class="row">
+            <!-- Header -->
             <h1 class="col-12 f-l-300 f-lg p-4">Weather Dashboard</h1>
         </div>
-        <!-- header -->
         <div class="row miw-100@sml">
             <aside class="col-3 p-4 miw-100@sml">
-                <!-- search -->
+                <!-- Search -->
                 <form class="miw-100@sml" id="searchForm">
                     <h4 class="f-400 f-sm">Search for a city:</h4>
+                    <!-- Input -->
                     <input class="w-100" id="searchInput" type="text" placeholder="Chicago">
+                    <!-- Button -->
                     <button type="submit"
                         class="btn btn-block btn-info c-blue c-white f-bold my-3 n-border w-100">Search</button>
                 </form>
-                <!-- input -->
-                <!-- button -->
-                <!-- display last 8 cities -->
+                <!-- Display search history -->
                 <div class="border-top pt-2" id="searchHistory"></div>
             </aside>
-
-            <!-- current weather -->
+            <!-- Current weather -->
             <section class="col-9 p-4">
                 <div id="currentWeather"></div>
                 <!-- 5 day forecast -->

@@ -1,7 +1,8 @@
-// variables
+// Variables
 const searchCities = JSON.parse(localStorage.getItem("cityHistory")) || [];
 
-// functions
+// Functions
+// API fetch
 function handleCoords(searchCity) {
   const fetchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=4b9f7dc3f8536150bc0eb915e8e4a81b`;
 
@@ -14,6 +15,7 @@ function handleCoords(searchCity) {
     });
 }
 
+// Fetches current weather
 function handleCurrentWeather(coordinates, city) {
   const lat = coordinates.lat;
   const lon = coordinates.lon;
@@ -31,11 +33,10 @@ function handleCurrentWeather(coordinates, city) {
     });
 }
 
+// Shows searched city current weather conditions
 function displayCurrentWeather(currentCityData, cityName) {
   let weatherIcon = `https://openweathermap.org/img/wn/${currentCityData.weather[0].icon}.png`;
   let uvColor = uvColorChange(currentCityData.uvi);
-  // todo: add Wind, humidity, UV index DONT FORGET UNITS
-  // create dynamic bg for uv index by adding class based on value of uv
   document.querySelector(
     "#currentWeather"
   ).innerHTML = `<h2 class="f-400"><span class="f-bold">${cityName}</span> ${moment
@@ -53,6 +54,7 @@ function displayCurrentWeather(currentCityData, cityName) {
   } </span> </div></div>`;
 }
 
+// Display UV index color for safe, moderate and high
 function uvColorChange(uvIndex) {
   if (uvIndex < 3) {
     return "bgc-green";
@@ -63,13 +65,13 @@ function uvColorChange(uvIndex) {
   }
 }
 
+// Shows city 5-day forecast
 function displayFiveDayWeather(fiveDayCityData) {
   const cityData = fiveDayCityData.slice(1, 6);
   document.querySelector("#fiveDayWeather").innerHTML = "";
 
   cityData.forEach((day) => {
     let weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`;
-    // todo: temp, wind, humidity DONT FORGET UNITS ()
     document.querySelector(
       "#fiveDayWeather"
     ).innerHTML += `<div class="card bgc-blue col-sm m-2"> <div class="pt-3"><img src="${weatherIcon}"></div> <div class="t-c-blue f-bold mb-3">${moment
@@ -86,6 +88,7 @@ function displayFiveDayWeather(fiveDayCityData) {
   });
 }
 
+// Search button submit
 function handleFormSubmit(event) {
   document.querySelector("#searchHistory").innerHTML = "";
   event.preventDefault();
@@ -99,6 +102,7 @@ function handleFormSubmit(event) {
   handleCoords(city);
 }
 
+// On page load, shows any past cities searched
 function showSearchButtons(cities) {
   cities.forEach((city) => {
     document.querySelector(
@@ -112,11 +116,9 @@ function handleHistory(event) {
   handleCoords(city);
 }
 
-// listeners
 showSearchButtons(searchCities);
-// on page load, show any past cities searched
-// search for city
-// click on city to show weather
+
+// Click on city to show weather
 document
   .querySelector("#searchForm")
   .addEventListener("submit", handleFormSubmit);
